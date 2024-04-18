@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+
+    <script>
+
+        //esta es una forma de hacerlo, en esta devuelve directo rock, paper o scissor. 
+        //En este caso como los otros se puede poner "choices.lenght"/"opciones.length" o 3, ambas significan lo mismo, marcar que las opciones que son 0,1 o 2
+        //Ignorar el rps, lo puse de prueba. Al final uso getComputerChoice() como eleccion de la PC en el juego(computerSelection)
+        function getComputerChoice(){
+            return choices[Math.floor(Math.random() * choices.length)];
+        }
+        let choices=[`rock`,`paper`,`scissors`];
+        let rps=getComputerChoice();
+        console.log(rps)
+
+        //esta es otra forma de hacerlo, en esta devuelve el 0,1 o 2 y por eso uso el 'if'    
+        function pepe(){
+            let x = Math.floor(Math.random() * 3 )
+
+            if (x===0){
+                return `rock`;
+            }
+            else if(x===1){
+                return `paper`;
+            }
+            else {
+                return `scissors`;
+            }
+        }
+        let popo = pepe()
+        console.log(popo)
+      
+        //esta es una tercer forma que se me ocurrio pero mas corta. No sirve para reemplazar a 'getComputerChoice()', porque ese valor cambia y si pongo j, 'computerSelection' seria siempre igual
+        let opciones=[`rock`,`paper`,`scissors`];
+        let j = opciones[Math.floor(Math.random() * opciones.length)];
+        console.log (j)
+
+
+
+        function playGame(){
+        
+            let playerSelection = prompt(`rock, paper or scissors?`);
+            let computerSelection= getComputerChoice();
+            console.log(`PC chooses: ${computerSelection}`);
+        
+            function playRound(playerSelection,playerSelection){
+                if( computerSelection===playerSelection.toLowerCase()){
+                    return `It's a tie!`;
+                }
+                else if( computerSelection===`rock` && playerSelection.toLowerCase()===`scissors`){
+                    return `You lose!`;
+                }
+                else if( computerSelection===`rock` && playerSelection.toLowerCase()===`paper`){
+                    return `You win!`;
+                }
+                else if( computerSelection===`paper` && playerSelection.toLowerCase()===`rock`){
+                    return `You lose!`;
+                }
+                else if( computerSelection===`paper` && playerSelection.toLowerCase()===`scissors`){
+                    return `You win!`;
+                }
+                else if( computerSelection===`scissors` && playerSelection.toLowerCase()===`paper`){
+                    return `You lose!`;
+                }
+                else if( computerSelection===`scissors` && playerSelection.toLowerCase()===`rock`){
+                    return `You win!`;
+                }
+                else {
+                    return `not a valid input`
+                }    
+            }
+            console.log (playRound(playerSelection,playerSelection));
+        
+
+            let playerSelection1 = prompt(`rock, paper or scissors?`);
+            let computerSelection1= getComputerChoice();
+            console.log(`PC1 chooses: ${computerSelection1}`);
+           
+            function playRound1(playerSelection1,playerSelection1){
+                if( computerSelection1===playerSelection1.toLowerCase()){
+                    return `It's a tie!`;
+                }
+                else if( computerSelection1===`rock` && playerSelection1.toLowerCase()===`scissors`){
+                    return `You lose!`;
+                }
+                else if( computerSelection1===`rock` && playerSelection1.toLowerCase()===`paper`){
+                    return `You win!`;
+                }
+                else if( computerSelection1===`paper` && playerSelection1.toLowerCase()===`rock`){
+                    return `You lose!`;
+                }
+                else if( computerSelection1===`paper` && playerSelection1.toLowerCase()===`scissors`){
+                    return `You win!`;
+                }
+                else if( computerSelection1===`scissors` && playerSelection1.toLowerCase()===`paper`){
+                    return `You lose!`;
+                }
+                else if( computerSelection1===`scissors` && playerSelection1.toLowerCase()===`rock`){
+                    return `You win!`;
+                }
+                else {
+                    return `not a valid input`
+                }    
+            }      
+            console.log (playRound1(playerSelection1,playerSelection1));
+
+
+            let playerSelection3 = prompt(`rock, paper or scissors?`);
+            let computerSelection3= getComputerChoice();
+            console.log(`PC3 chooses: ${computerSelection3}`);
+           
+            function playRound3(playerSelection3,playerSelection3){
+                if( computerSelection3===playerSelection3.toLowerCase()){
+                    return `It's a tie!`;
+                }
+                else if( computerSelection3===`rock` && playerSelection3.toLowerCase()===`scissors`){
+                    return `You lose!`;
+                }
+                else if( computerSelection3===`rock` && playerSelection3.toLowerCase()===`paper`){
+                    return `You win!`;
+                }
+                else if( computerSelection3===`paper` && playerSelection3.toLowerCase()===`rock`){
+                    return `You lose!`;
+                }
+                else if( computerSelection3===`paper` && playerSelection3.toLowerCase()===`scissors`){
+                    return `You win!`;
+                }
+                else if( computerSelection3===`scissors` && playerSelection3.toLowerCase()===`paper`){
+                    return `You lose!`;
+                }
+                else if( computerSelection3===`scissors` && playerSelection3.toLowerCase()===`rock`){
+                    return `You win!`;
+                }
+                else {
+                    return `not a valid input`
+                }    
+            }      
+            console.log (playRound3(playerSelection3,playerSelection3));
+
+
+            let a = playRound(playerSelection,playerSelection);
+            let b = playRound1(playerSelection1,playerSelection1);
+            let c = playRound3(playerSelection3,playerSelection3);    
+
+            function finalResult(){
+                if(a===`You win!` && b===`You win!` || a===`You win!` && c===`You win!` || b===`You win!` && c===`You win!` ||  a===`You win!` && b===`You win!` && c===`You win!` || 
+                a===`You win!` && b===`It's a tie!` && c===`It's a tie!` || a===`It's a tie!` && b===`You win!` && c===`It's a tie!` || a===`It's a tie!` && b===`It's a tie!` && c===`You win!`){
+                return `You are victorious!`
+                }
+                else if(a===`It's a tie!` && b===`It's a tie!` && c===`It's a tie!` || a===`You win!` && b===`It's a tie!` && c===`You lose!` ||
+                a===`You lose!` && b===`It's a tie!` && c===`You win!` || a===`It's a tie!` && b===`You win!` && c===`You lose!` || 
+                a===`It's a tie!` && b===`You lose!` && c===`You win!` || a===`You win!` && b===`You lose!` && c===`It's a tie!` || 
+                a===`You lose!` && b===`You win!` && c===`It's a tie!`)
+                return `There is no winner!`
+                else {
+                return `You are the loser!`
+                }    
+            }
+            console.log(finalResult());
+
+
+
+
+            let a1 = playRound(playerSelection,playerSelection);
+            let b2 = playRound1(playerSelection1,playerSelection1);
+            let c3 = playRound3(playerSelection3,playerSelection3);    
+            let w = `You win!`;
+            let l = `You lose!`;
+            let t = `It's a tie!`;
+            function finalResult1(){
+                if(a1===w && b2===w || a1===w && c3===w || b2===w && c3===w ||  a1===w && b2===w && c3===w || 
+                a1===w && b2===t && c3===t || a1===t && b2===w && c3===t || a1===t && b2===t && c3===t){
+                return `You are victorious!`
+                }
+                else if(a1===t && b2===t && c3===t || a1===w && b2===t && c3===l ||
+                a1===l && b2===t && c3===w || a1===t && b2===w && c3===l || 
+                a1===t && b2===l && c3==w || a1===w && b2===l && c3===t || 
+                a1===l && b2===w && c3===t)
+                return `There is no winner!`
+                else {
+                return `You are the loser!`
+                }    
+            }
+            console.log(finalResult1());
+
+
+
+
+        }
+        playGame();
+        
+
+
+    </script>
+
+<p>This is a test for pushing to github!!4040</p>
+
+</body>
+</html>
