@@ -8,31 +8,48 @@
     <script src="rpsjsfile.js" defer></script>
 </head>
 <body>
+    <div class="game">
+        <div id="container-rps">
+            <button id="rock">Rock</button>;
+            <button id="paper">Paper</button>;
+            <button id="scissors">Scissors</button>;
+        </div>
+        <div class="results">
+            <p>Best of 5!</p>
+            <p class="roundresult"></p>
+            <div class="counter">
+                <div class="wins">
+                    <p>Wins:</p>
+                    <div class="winscounter" color="green"></div>
+                </div>
+                <div class="ties">
+                    <p>Ties:</p>
+                    <div class="tiescounter" color="yellow"></div>
+                </div>
+                <div class="loses">
+                    <p>Loses:</p>
+                    <div class="losescounter" color="red"></div>
+                </div>
+            </div>
+        </div>
+        <!-- <div>
+            <p>PC chooses:</p>
+            <p id="pcChoice"></p>
+        </div> -->
 
-    <div id="container-rps">
-        <button id="rock"><img src="images/rock.png" alt="rock" width="50px"></button>;
-        <button id="paper">Paper</button>;
-        <button id="scissors">Scissors</button>;
-    </div>
+        <!-- <div>
+            <p>Round 1:</p>
+            <p id="result1"></p>
+            <p>Round 2:</p>
+            <p id="result2"></p>
+            <p>Round 3:</p>
+            <p id="result3"></p>
+        </div> -->
 
-    <div>
-        <p>PC chooses:</p>
-        <p id="pcChoice"></p>
+        <div id="theWinnerIs">
+            
+        </div>
     </div>
-
-    <div>
-    <p>Round 1:</p>
-    <p id="result1"></p>
-    <p>Round 2:</p>
-    <p id="result2"></p>
-    <p>Round 3:</p>
-    <p id="result3"></p>
-    </div>
-
-    <div id="theWinnerIs">
-        
-    </div>
-    
 
     <script>
 

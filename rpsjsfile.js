@@ -6,82 +6,157 @@ const result1 = document.querySelector(`#result1`);
 const result2 = document.querySelector(`#result2`);
 const result3 = document.querySelector(`#result3`);
 const finalWinner = document.querySelector(`#theWinnerIs`);
+const winscounter = document.querySelector(`.winscounter`);
+const tiescounter = document.querySelector(`.tiescounter`);
+const losescounter = document.querySelector(`.losescounter`);
+const roundresult= document.querySelector(`.roundresult`)
 
 
 let text = ``;
 
 let buttonClicks = 0;
 
+winscounter.textContent = Number(0);
+tiescounter.textContent = Number(0);
+losescounter.textContent = Number(0);
+
 containerRps.forEach((button)=>{
 
     button.addEventListener(`click`, () => {
        
-        if(buttonClicks >= 3){return;}
+        if(buttonClicks >= 5){return;}
+        console.log(buttonClicks)
     
         function getComputerChoice(){
             return choices[Math.floor(Math.random() * choices.length)] 
         }
         let choices=[`rock`,`paper`,`scissors`];
         let computerSelection = getComputerChoice(); console.log(computerSelection); 
-        pc.textContent = computerSelection ;
+        //pc.textContent = `pc chooses ${computerSelection}` ;
    
 
         if (computerSelection == button.id ){
-            text = text + `It's a tie!` + `  `
+            text = text + `It's a tie!` + `  `;
+            tiescounter.textContent++;
+            roundresult.textContent = `You both choose ${computerSelection}`;
+            roundresult.style.color = `yellow`;
+
         }
         else if (computerSelection == `rock` && button.id == `paper`){
-            text = text + `You win!` + `  `
+            text = text + `You win!` + `  `;
+            winscounter.textContent++;
+            roundresult.textContent = `Paper beats rock`;
+            roundresult.style.color = `green`;
         }
         else if (computerSelection == `paper` && button.id == `scissors`){
-            text = text + `You win!` + `  `
+            text = text + `You win!` + `  `;
+            winscounter.textContent++;
+            roundresult.textContent = `Scissors beats paper`;
+            roundresult.style.color = `green`;
         }
         else if (computerSelection == `scissors` && button.id == `rock`){
-            text = text + `You win!` + `  `
+            text = text + `You win!` + `  `;
+            winscounter.textContent++;
+            roundresult.textContent = `Rock beats scissors`;
+            roundresult.style.color = `green`;
         }
-        else {
-            text = text + `You lose!` + `  `
+        else if(computerSelection == `rock` && button.id == `scissors`){
+            text = text + `You lose!` + `  `;
+            losescounter.textContent++;
+            roundresult.textContent = `Rock beats scissors`;
+            roundresult.style.color = `red`;
+        }
+        else if(computerSelection == `scissors` && button.id == `paper`){
+            text = text + `You lose!` + `  `;
+            losescounter.textContent++;
+            roundresult.textContent = `Rock beats paper`;
+            roundresult.style.color = `red`;
+        }
+        else if(computerSelection == `paper` && button.id == `rock`){
+            text = text + `You lose!` + `  `;
+            losescounter.textContent++;
+            roundresult.textContent = `Paper beats rock`;
+            roundresult.style.color = `red`;
         }
 
+
+
+        if(winscounter.textContent == 3){
+            //const para = document.createElement(`p`);
+            roundresult.textContent = ``;
+            finalWinner.textContent = `YOUUU AREE THE WINNER`;
+            //finalWinner.appendChild(para);
+            buttonClicks = 5
+        }
+        if(losescounter.textContent == 3){
+            //const para = document.createElement(`p`);
+            finalWinner.textContent = `YOUUU AREE THE LOOOOOOSER`;
+            roundresult.textContent = ``;
+            //finalWinner.appendChild(para);
+            buttonClicks = 5;
+        }
+        if(tiescounter.textContent == 3){
+            //const para = document.createElement(`p`);
+            finalWinner.textContent = `ITS A TIE`;
+            roundresult.textContent = ``;
+            //finalWinner.appendChild(para);
+            buttonClicks = 5;
+        }
+        if(tiescounter.textContent==2 && winscounter.textContent ==2 && losescounter.textContent==1){
+            finalWinner.textContent = `YOUUU AREE THE WINNER`;
+            roundresult.textContent = ``;
+        }
+        if(tiescounter.textContent==2 && winscounter.textContent ==1 && losescounter.textContent==2){
+            finalWinner.textContent = `YOUUU AREE THE LOOOOOOSER`;
+            roundresult.textContent = ``;
+        }
+        if(tiescounter.textContent==1 && winscounter.textContent ==2 && losescounter.textContent==2){
+            finalWinner.textContent = `ITS A TIE`;
+            roundresult.textContent = ``;
+        }
+        console.log(winscounter.textContent)
      
-        resultsArray = text.split(`  `);
-        
-        
-        result1.textContent = resultsArray[0];
-        result2.textContent = resultsArray[1];
-        result3.textContent = resultsArray[2];
-        
-        
-
-        let r1 = resultsArray[0];
-        let r2 = resultsArray[1];
-        let r3 = resultsArray[2];
-       
-        
-        function theWinnerIs(){
-           
-            if(r1==`You win!` && r2==`You win!` && r3==`You win!`|| r1==`You win!` && r2==`You win!` && r3==`It's a tie!` || r1==`You win!` && r2==`You win!` && r3==`You lose!` 
-            || r1==`You win!` && r2!=`You win!` && r3==`You win!` || r1!=`You win!` && r2==`You win!` && r3==`You win!` || r1==`It's a tie!` && r2==`It's a tie!` && r3==`You win!` 
-            || r1==`It's a tie!` && r2==`You win!` && r3==`It's a tie!` || r1==`You win!` && r2==`It's a tie!` && r3==`It's a tie!`) {
-            return `YOU WIN!`}
-            
-            if(r1==`You lose!` && r2==`You lose!` && r3==`You lose!` || r1==`You lose!` && r2==`You lose!` && r3==`It's a tie!` || r1==`You lose!` && r2==`You lose!` && r3==`You win!` 
-            || r1==`You lose!` && r2!=`You lose!` && r3==`You lose!` || r1!=`You lose!` && r2==`You lose!` && r3==`You lose!` || r1==`It's a tie!` && r2==`It's a tie!` && r3==`You lose!` 
-            || r1==`It's a tie!` && r2==`You lose!` && r3==`It's a tie!` || r1==`You lose!` && r2==`It's a tie!` && r3==`It's a tie!`){
-            return `YOU LOSE!`}
-            
-            if(r1==`It's a tie!` && r2==`It's a tie!` && r3==`It's a tie!` ||r1==`You lose!` && r2==`It's a tie!` && r3==`You win!` || r1==`You lose!` && r2==`You win!` && r3==`It's a tie!` 
-            || r1==`You win!` && r2==`You lose!` && r3==`It's a tie!` || r1==`You win!` && r2==`It's a tie!` && r3==`You lose!` || r1==`It's a tie!` && r2==`You win!` && r3==`You lose!` 
-            || r1==`It's a tie!` && r2==`You lose!` && r3==`You win!`){
-            return `YOU TIED!`}
-            
-        }
-        
-        let winner = theWinnerIs();
-        const para = document.createElement(`p`);
-        para.textContent = winner;
-        finalWinner.appendChild(para)
 
         ++buttonClicks;
+        // resultsArray = text.split(`  `);
+        
+        
+        // result1.textContent = resultsArray[0];
+        // result2.textContent = resultsArray[1];
+        // result3.textContent = resultsArray[2];
+        
+        
+
+        // let r1 = resultsArray[0];
+        // let r2 = resultsArray[1];
+        // let r3 = resultsArray[2];
+       
+        
+        // function theWinnerIs(){
+           
+        //     if(r1==`You win!` && r2==`You win!` && r3==`You win!`|| r1==`You win!` && r2==`You win!` && r3==`It's a tie!` || r1==`You win!` && r2==`You win!` && r3==`You lose!` 
+        //     || r1==`You win!` && r2!=`You win!` && r3==`You win!` || r1!=`You win!` && r2==`You win!` && r3==`You win!` || r1==`It's a tie!` && r2==`It's a tie!` && r3==`You win!` 
+        //     || r1==`It's a tie!` && r2==`You win!` && r3==`It's a tie!` || r1==`You win!` && r2==`It's a tie!` && r3==`It's a tie!`) {
+        //     return `YOU WIN!`}
+            
+        //     if(r1==`You lose!` && r2==`You lose!` && r3==`You lose!` || r1==`You lose!` && r2==`You lose!` && r3==`It's a tie!` || r1==`You lose!` && r2==`You lose!` && r3==`You win!` 
+        //     || r1==`You lose!` && r2!=`You lose!` && r3==`You lose!` || r1!=`You lose!` && r2==`You lose!` && r3==`You lose!` || r1==`It's a tie!` && r2==`It's a tie!` && r3==`You lose!` 
+        //     || r1==`It's a tie!` && r2==`You lose!` && r3==`It's a tie!` || r1==`You lose!` && r2==`It's a tie!` && r3==`It's a tie!`){
+        //     return `YOU LOSE!`}
+            
+        //     if(r1==`It's a tie!` && r2==`It's a tie!` && r3==`It's a tie!` ||r1==`You lose!` && r2==`It's a tie!` && r3==`You win!` || r1==`You lose!` && r2==`You win!` && r3==`It's a tie!` 
+        //     || r1==`You win!` && r2==`You lose!` && r3==`It's a tie!` || r1==`You win!` && r2==`It's a tie!` && r3==`You lose!` || r1==`It's a tie!` && r2==`You win!` && r3==`You lose!` 
+        //     || r1==`It's a tie!` && r2==`You lose!` && r3==`You win!`){
+        //     return `YOU TIED!`}
+            
+        // }
+        
+        // let winner = theWinnerIs();
+        // const para = document.createElement(`p`);
+        // para.textContent = winner;
+        // finalWinner.appendChild(para)
+
+        //++buttonClicks;
             
     });  
 });
